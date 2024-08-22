@@ -1,7 +1,22 @@
+import { useState } from "react";
+
 import ProductTable from "./ProductTable";
 import SearchBar from "./SearchBar";
 
 function FilterableProductTable() {
+    const [inStock, setInStock] = useState(false);
+    const [query, setQuery] = useState('');
+
+    function handleCheckBox(event) {
+        const isChecked = event.target.checked;
+        setInStock(isChecked);
+    }
+
+    function handleSearch(event) {
+        const searchQuery =  event.target.value;
+        setQuery(searchQuery);
+    }
+
     const products = [
         { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
         { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
@@ -12,10 +27,14 @@ function FilterableProductTable() {
         { category: "Electronics", price: "$2000", stocked: true, name: "iPhone" },
         { category: "Electronics", price: "$1600", stocked: false, name: "iMac" }
       ];
+
+    const filteredProducts = products
+        .filter(product => inStock ? product.stocked: true)
+        .filter(product => product.name.toLowerCase().startsWith(query.toLowerCase()) );
     return (
         <div className="w-96 border">
-            <SearchBar />
-            <ProductTable products={products} />
+            <SearchBar handleCheckBox={handleCheckBox} handleSearch={handleSearch} />
+            <ProductTable products={filteredProducts} />
         </div>
     )
 }
