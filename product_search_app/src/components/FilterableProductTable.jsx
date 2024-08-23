@@ -32,7 +32,8 @@ function FilterableProductTable() {
         .filter(product => inStock ? product.stocked: true)
         .filter(product => product.name.toLowerCase().startsWith(query.toLowerCase()) );
     return (
-        <div className="w-96 border">
+        <div className="w-96 border rounded-md bg-white p-4 shadow">
+            <h2 className="text-2xl mb-2 font-bold">Product Search App</h2>
             <SearchBar handleCheckBox={handleCheckBox} handleSearch={handleSearch} />
             <ProductTable products={filteredProducts} />
         </div>

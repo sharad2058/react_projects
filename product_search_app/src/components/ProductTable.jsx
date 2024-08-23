@@ -16,8 +16,8 @@ function ProductTable({ products }) {
         <table className="w-full">
             <tbody>
             <tr>
-                <th className="p-2">Name</th>
-                <th className="p-2">Price</th>
+                <th className="px-3 py-2 text-left bg-slate-100">Name</th>
+                <th className="px-3 py-2 text-right bg-slate-100">Price</th>
             </tr>
 
             {
